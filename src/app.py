@@ -37,6 +37,7 @@ df = wrangle("Data/scfp2019excel.zip")
 
 # initialize dash app
 app = Dash(__name__)
+server = app.server
 
 # create application layout
 # Set application layout
