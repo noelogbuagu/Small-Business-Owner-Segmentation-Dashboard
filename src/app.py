@@ -32,7 +32,7 @@ def wrangle(filepath):
     return df
 
 # import wrangled data
-df = wrangle("Data/scfp2019excel.zip")
+df = wrangle("/Users/Blurryface/Documents/GitHub/Data_Science_Portfolio/6_Customer_Segmentation/Data/scfp2019excel.zip")
 
 
 # initialize dash app
@@ -50,7 +50,7 @@ app.layout = html.Div(
 #         bar chart
         dcc.Graph(id="bar-chart"),
 #         paragraph to explain trimmed and not trimmed
-        html.P("Trimmed variance removes the bottom and top 10 of observations (outliers)."),
+        html.P("Trimmed variance removes the bottom and top 10% of observations (outliers)."),
 #         radio buttons
         dcc.RadioItems(
             options = [
@@ -61,14 +61,17 @@ app.layout = html.Div(
             id = "trim-button"
         ),
         
-#         k slider
+#         KMeans Clustering
         html.H2("K-Means Clustering"),
-        html.H3("Number of Clusters(k)"),
-        dcc.Slider(min = 2, max = 12, step = 1, value = 2, id = "k-slider"),
-        html.Div(id = "metrics"),
         
 #         pca scatterplot
-        dcc.Graph(id="pca-scatter")
+        dcc.Graph(id="pca-scatter"),
+        
+#         k slider
+        html.H3("Number of Clusters(k)"),
+        dcc.Slider(min = 2, max = 12, step = 1, value = 2, id = "k-slider"),
+        html.Div(id = "metrics")
+        
 
     ]
 )
