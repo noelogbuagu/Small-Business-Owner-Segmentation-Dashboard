@@ -54,7 +54,7 @@ df = df[mask]
  
 
 # initialize dash app
-app = Dash(__name__, title="SCF-DashApp")
+app = Dash(__name__)
 # Declare server for Heroku deployment. Needed for Procfile.
 server = app.server
 
