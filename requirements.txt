@@ -3,5 +3,5 @@ pandas==1.3.2
 plotly==5.15.0
 scikit_learn==1.0.2
 scipy==1.5.0
-gunicorn
-dash-tools
+gunicorn==20.1.0
+dash-tools==1.11.1
