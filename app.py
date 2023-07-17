@@ -91,7 +91,6 @@ app.layout = html.Div(
         dcc.Slider(min = 2, max = 12, step = 1, value = 2, id = "k-slider"),
         html.Div(id = "metrics")
         
-
     ]
 )
 
