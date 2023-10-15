@@ -1,0 +1,74 @@
+Interactive web application
+
+made with a tool call dash. Dash is a library that allows you to create webpages or web applications using Python nd it is maintained by Plotly
+
+highlihts.
+- Prepare data.
+    import: wrangle function
+- Build application.
+    applicatioin layout: application layers.
+    variance bar-chart: call backs (mechanism that allows interactive elemnts to automatically update), decorators.
+    K-means slider.
+    PCA scatter plot.
+
+
+Prepare Data.
+    Import
+
+    first step is to wrangle the data by creating a mask for small business owners that make an annual income less than $500k
+    then i use this mask to subset the DataFrame.
+
+
+Build dashboard
+    - Application layout
+
+        Now that the data has  been imported, it is time to build the application.
+
+        The application has 3 dynamic elemnts.
+        the first element is the variance barchart that shows the top 5 highest variance features in the dataset. there is a choice to filter based on trimmed or untrimmed data.
+        the second element is the k-means slider. this slider adjusts the number of clusters. the model is re-trained with the new number of clusters and this updates the inertia and silhoutte scores for the model.
+        The third element is the PCA scatterplot. this shows the data and is color coded based on the number of clusters the user has input in the k-means slider.
+
+        The first thing to dois to instantiate the application. it is called app.
+
+        The application layout was built iteratively. the entire application was put in a HTML Div. afterwards, the title and subtitle of the bar-chart elemnt of the applications were added..
+
+    - The Application Architecture.
+
+        There are 2 parts of the application. the part the user sees and the part that does all the work. these parts are called layers.
+        the part the user sees is the presentation layer and the part that does all the work is the business layer.
+        however, this could lead to long term problems as for every update made in the resentation layer a corresponding update needs to be made in the business layer.
+        a solution is adding a service layer. this can be thought of as a translation or go-between layer. it takes information from the presentation layer and translates it into a form the business layer will understand.on the other hand, it gets results back from the business layer and puts it in a form the presentation layer will understand.
+        
+        Variance bar chart
+
+            in our application, a graph object (bar chart) the user sees is added. then a get high variance features element is used to calculate then a serve layerer function is used to connect the layers
+            then a get higgh variance function was created. the function returns the 5 highest variance features of df.
+            
+            there are 2 prameters, the first is the trimmed parameter which is boolean. the default is true which communicates that it should clalculate trimmed variance, else don't.
+            the second parameter, is return, feat_names which is also boolean. if true return feature names as a list, else, returns a series
+            
+            the service layer, the serve bar chart function was built. it returns a horizontal bar chart of the five-highest variance features. it takes one parameter, trimmed. if true it calculates trimmed variance, removing bottom and top 10% of observations.
+            the first step was to get the features from the business layer function
+            next, build bar chart with that layer and label axes.
+
+            next, added radiio buttons undereath so users can change between trimmed or untrimmed data. this was done in the application layout.
+            different options [key value pair. the label is the key and the value is value], default value and an id to connect to the service layer.
+
+            the way to connect serve bar chart function is to add a callback. it's a way to dynamically change the presentation layer.
+            there are 2 things that are needed, the output and the input.
+            for the output it is important to note where the output is going, that is the barchart. where is the parameter name where the output should be passed, the figure argument.
+            the input is coming from the trim-button, which is associated with the value argument
+        
+        K-Means Slider and metrics
+
+            added title information for the k-means slider.
+            added a subtitle to serve as title for the slider.
+            used dash core components to add slider. the maximum, minimum, step and default value were stated. an id was also added to connect to the service layer.
+
+
+            ksjnkcjnds
+
+
+            
+
